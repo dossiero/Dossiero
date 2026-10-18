@@ -28,7 +28,6 @@ import { basename, dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { z } from 'zod';
 import {
-  APPLICATION_AUTHOR,
   APPLICATION_COPYRIGHT,
   APPLICATION_NAME,
   APPLICATION_WEBSITE,
@@ -36,6 +35,7 @@ import {
 import { IPC_CHANNELS, type IpcChannel } from '../shared/ipc.js';
 import { idSchema, settingsSchema, socialAccountInputSchema } from '../shared/schemas.js';
 import type { Appearance, AppSettings, ExternalBrowser } from '../shared/types.js';
+import { showAboutWindow } from './about-window.js';
 import { dispatchCore } from './dispatch.js';
 import {
   browserNameFromPath,
@@ -352,6 +352,17 @@ function applyPlatformSettings(settings: AppSettings) {
 }
 
 function installApplicationMenu() {
+  const openAboutWindow = () => showAboutWindow({
+    applicationName: APPLICATION_NAME,
+    applicationVersion: app.getVersion(),
+    copyright: APPLICATION_COPYRIGHT,
+    iconPath: appIconPath(),
+    parent: mainWindow ?? undefined,
+    rendererDevServerUrl: process.env.VITE_DEV_SERVER_URL,
+    rendererHtmlPath: join(currentDir, '../../dist/index.html'),
+    website: APPLICATION_WEBSITE,
+    openWebsite: () => openLink(APPLICATION_WEBSITE),
+  });
   const appViewMenu: MenuItemConstructorOptions = {
     label: 'View',
     submenu: [{ role: 'togglefullscreen' }],
@@ -360,13 +371,14 @@ function installApplicationMenu() {
     role: 'help',
     submenu: [{
       label: `About ${APPLICATION_NAME}`,
-      click: () => app.showAboutPanel(),
+      click: openAboutWindow,
     }],
   };
   const template: MenuItemConstructorOptions[] = process.platform === 'darwin' ? [{
     label: APPLICATION_NAME,
     submenu: [
-      { role: 'about' }, { type: 'separator' },
+      { label: `About ${APPLICATION_NAME}`, click: openAboutWindow },
+      { type: 'separator' },
       { label: 'Settings…', accelerator: 'Command+,', click: () => showMainWindow(true) },
       { type: 'separator' }, { role: 'services' }, { type: 'separator' },
       { role: 'hide' }, { role: 'hideOthers' }, { role: 'unhide' }, { type: 'separator' }, { role: 'quit' }
@@ -375,22 +387,6 @@ function installApplicationMenu() {
     { role: 'fileMenu' }, { role: 'editMenu' }, appViewMenu, { role: 'windowMenu' }, appHelpMenu
   ];
   Menu.setApplicationMenu(Menu.buildFromTemplate(template));
-}
-
-function configureAboutPanel() {
-  app.setAboutPanelOptions({
-    applicationName: APPLICATION_NAME,
-    applicationVersion: app.getVersion(),
-    copyright: APPLICATION_COPYRIGHT,
-    credits: [
-      `Created by ${APPLICATION_AUTHOR}`,
-      APPLICATION_WEBSITE,
-      'Licensed under the GNU General Public License version 3',
-    ].join('\n'),
-    authors: [APPLICATION_AUTHOR],
-    website: APPLICATION_WEBSITE,
-    iconPath: appIconPath(),
-  });
 }
 
 function registerIpc() {
@@ -531,7 +527,6 @@ app.whenReady().then(async () => {
       : new Response('Not found', { status: 404 });
   });
   registerIpc();
-  configureAboutPanel();
   installApplicationMenu();
   if (!releaseSmokeTest) {
     applyPlatformSettings(service.getSettings());
