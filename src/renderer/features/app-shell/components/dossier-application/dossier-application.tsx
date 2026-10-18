@@ -18,6 +18,7 @@ import { ResponsiveWorkspace } from "@/features/app-shell/components/responsive-
 import { AppDialogs } from "@/features/app-shell/components/app-dialogs/app-dialogs";
 import { FirstRun } from "@/features/app-shell/components/first-run/first-run";
 import { PersonDossierWorkspace } from "@/features/app-shell/components/person-dossier-workspace/person-dossier-workspace";
+import { RightSidebar } from "@/features/app-shell/components/right-sidebar/right-sidebar";
 import { useDossierApplication } from "@/features/app-shell/hooks/use-dossier-application";
 import "./dossier-application.css";
 
@@ -57,7 +58,6 @@ export function DossierApplication() {
     width,
     sidebarCompact,
     dossierScroll,
-    initialWideSidebarSize,
     activeTab,
     nextTabAfterRemoval,
     setQuery,
@@ -145,18 +145,20 @@ export function DossierApplication() {
   };
   const rightSidebar = selectedObject
     ? (
-      <InspectorPanel
-        selected={selectedObject}
-        onClose={closeRightSidebar}
-        onMediaUpdate={updateInspectedMedia}
-        onMediaExport={(item) => void actionResult(() => api.exportMedia(item.id))}
-        onOpenPerson={(id) => {
-          const person = bundle?.relatedPeople.find((item) => item.id === id);
-          if (person) {
-            openRelatedPerson(person);
-          }
-        }}
-      />
+      <RightSidebar>
+        <InspectorPanel
+          selected={selectedObject}
+          onClose={closeRightSidebar}
+          onMediaUpdate={updateInspectedMedia}
+          onMediaExport={(item) => void actionResult(() => api.exportMedia(item.id))}
+          onOpenPerson={(id) => {
+            const person = bundle?.relatedPeople.find((item) => item.id === id);
+            if (person) {
+              openRelatedPerson(person);
+            }
+          }}
+        />
+      </RightSidebar>
     )
     : null;
   const activeContent = activeTab && bundle
@@ -276,7 +278,6 @@ export function DossierApplication() {
     <ResponsiveWorkspace
       width={width}
       contentFullscreen={contentFullscreen}
-      initialWideSidebarSize={initialWideSidebarSize}
       sidebar={sidebar}
       main={main}
       rightSidebar={rightSidebar}

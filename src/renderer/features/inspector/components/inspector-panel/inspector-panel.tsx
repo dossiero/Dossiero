@@ -32,7 +32,7 @@ export function InspectorPanel({
       .toUpperCase();
 
     return (
-      <aside className="inspector panel relation-inspector">
+      <div className="inspector relation-inspector">
         <InspectorHeader onClose={onClose} eyebrow="// RELATED PERSON" title="Person detail" />
         <div className={`relation-inspector-avatar ${avatarUrl ? "has-photo" : ""}`}>
           {avatarUrl ? (
@@ -60,27 +60,27 @@ export function InspectorPanel({
         <Button variant="signal" onClick={() => onOpenPerson?.(selected.person.id)}>
           Open full dossier
         </Button>
-      </aside>
+      </div>
     );
   }
 
   if (selected && "mimeType" in selected) {
     return (
-      <aside className="inspector panel is-media">
+      <div className="inspector is-media">
         <MediaDetails
           item={selected}
           onUpdate={onMediaUpdate}
           onExport={onMediaExport}
           onClose={onClose}
         />
-      </aside>
+      </div>
     );
   }
 
   const objectType = selected && "url" in selected ? "SOURCE_NODE" : "NO_SELECTION";
 
   return (
-    <aside className="inspector panel">
+    <div className="inspector">
       <InspectorHeader onClose={onClose} eyebrow="// INSPECTOR" title="Object detail" />
       <div className="inspector-network">
         <NetworkMotif compact />
@@ -105,6 +105,6 @@ export function InspectorPanel({
           <p>Select a log, evidence file, or source node to inspect relationships.</p>
         </div>
       )}
-    </aside>
+    </div>
   );
 }

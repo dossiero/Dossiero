@@ -1,16 +1,8 @@
 .person-dossier-workspace {
-  width: 100%;
-  height: 100%;
-  min-width: 0;
-  min-height: 0;
+  flex: 1;
 }
 
-.person-dossier-workspace__panels {
-  width: 100%;
-  height: 100%;
-  min-width: 0;
-}
-
+.person-dossier-workspace__panel,
 .person-dossier-workspace__content {
   min-width: 0;
   min-height: 0;
@@ -19,52 +11,4 @@
 .person-dossier-workspace__scroll {
   width: 100%;
   height: 100%;
-}
-
-.person-dossier-workspace__resize-handle {
-  position: relative;
-  width: 7px;
-  flex: 0 0 7px;
-  background: transparent;
-  touch-action: none;
-  transition: background-color .15s;
-}
-
-.person-dossier-workspace__resize-handle::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-inline: 1px solid rgb(var(--line) / .55);
-  transition: border-color .15s, box-shadow .15s;
-}
-
-.person-dossier-workspace__resize-handle::after {
-  content: "";
-  position: absolute;
-  top: calc(50% - 18px);
-  bottom: calc(50% - 18px);
-  left: 50%;
-  width: 3px;
-  transform: translateX(-50%);
-  border-radius: 2px;
-  background: rgb(var(--signal) / .72);
-  opacity: 0;
-  transition: opacity .15s, box-shadow .15s;
-}
-
-.person-dossier-workspace__resize-handle:hover,
-.person-dossier-workspace__resize-handle[data-resize-handle-active] {
-  background: rgb(var(--signal) / .04);
-}
-
-.person-dossier-workspace__resize-handle:hover::before,
-.person-dossier-workspace__resize-handle[data-resize-handle-active]::before {
-  border-color: rgb(var(--signal) / .5);
-  box-shadow: inset 1px 0 rgb(var(--glow) / .1), inset -1px 0 rgb(var(--glow) / .1);
-}
-
-.person-dossier-workspace__resize-handle:hover::after,
-.person-dossier-workspace__resize-handle[data-resize-handle-active]::after {
-  opacity: 1;
-  box-shadow: 0 0 8px rgb(var(--glow) / .42);
 }

@@ -25,7 +25,6 @@ import type {
 import {
   readScrollState,
   readViewState,
-  readWideSidebarSize,
   resolvedAppearance,
   saveScrollState,
   saveViewState,
@@ -60,7 +59,6 @@ export function useDossierApplication({
   exitFullscreen,
 }: UseDossierApplicationOptions) {
   const initialView = useMemo(readViewState, []);
-  const initialWideSidebarSize = useMemo(readWideSidebarSize, []);
   const [cases, setCases] = useState<CaseSummary[]>([]);
   const [selectedCaseId, setSelectedCaseId] = useState<string | null>(
     initialView.selectedCaseId,
@@ -514,7 +512,7 @@ export function useDossierApplication({
     relationPersonEdit, relationEdit,
     returnTarget, archiveTarget, tabDialog, tabEdit, tabRemove, linkDialog, mediaEdit,
     deleteTarget, searchResults, lightbox, sidebarSheet, rightSidebarSheet,
-    settingsOpen, width, sidebarCompact, dossierScroll, initialWideSidebarSize, activeTab,
+    settingsOpen, width, sidebarCompact, dossierScroll, activeTab,
     nextTabAfterRemoval, setQuery, setTrashOpen, setBundle,
     setActiveTabId, setSelectedObject, setPersonDialog, setCaseDialogOpen, setRelationPersonTarget,
     setRelationPersonEdit, setRelationEdit, setArchiveTarget, setTabDialog, setTabEdit,
