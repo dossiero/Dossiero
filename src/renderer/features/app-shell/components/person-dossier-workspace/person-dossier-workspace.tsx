@@ -19,16 +19,18 @@ export function PersonDossierWorkspace({
 }: PersonDossierWorkspaceProps) {
   return (
     <ResizableLayout
-      ariaLabel="Resize dossier navigation"
       className="person-dossier-workspace"
-      collapsedWidth={PERSON_DOSSIER_PANEL_COLLAPSED_WIDTH}
-      defaultWidth={PERSON_DOSSIER_PANEL_DEFAULT_WIDTH}
-      maximumWidth={PERSON_DOSSIER_PANEL_MAX_WIDTH}
-      minimumWidth={PERSON_DOSSIER_PANEL_COMPACT_THRESHOLD}
-      panel={renderPanel}
-      panelClassName="person-dossier-workspace__panel"
-      snapThreshold={PERSON_DOSSIER_PANEL_COMPACT_THRESHOLD}
-      storageKey="dossier-person-panel-width"
+      startPanel={{
+        ariaLabel: "Resize dossier navigation",
+        collapsedWidth: PERSON_DOSSIER_PANEL_COLLAPSED_WIDTH,
+        content: renderPanel,
+        defaultWidth: PERSON_DOSSIER_PANEL_DEFAULT_WIDTH,
+        maximumWidth: PERSON_DOSSIER_PANEL_MAX_WIDTH,
+        minimumWidth: PERSON_DOSSIER_PANEL_COMPACT_THRESHOLD,
+        panelClassName: "person-dossier-workspace__panel",
+        snapThreshold: PERSON_DOSSIER_PANEL_COMPACT_THRESHOLD,
+        storageKey: "dossier-person-panel-width",
+      }}
     >
       <div className="person-dossier-workspace__content">{children}</div>
     </ResizableLayout>
