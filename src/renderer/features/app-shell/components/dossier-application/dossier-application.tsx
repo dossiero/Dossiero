@@ -82,7 +82,7 @@ export function DossierApplication() {
     setRightSidebarSheet,
     setSettingsOpen,
     run,
-    resizePersonSidebar,
+    setPersonSidebarCompact,
     rememberScroll,
     updateSettings,
     changeAppearance,
@@ -280,7 +280,7 @@ export function DossierApplication() {
       sidebar={sidebar}
       main={main}
       rightSidebar={rightSidebar}
-      onPersonSidebarResize={resizePersonSidebar}
+      onPersonSidebarCompactChange={setPersonSidebarCompact}
     />
   );
   return (

@@ -7,5 +7,5 @@ export interface ResponsiveWorkspaceProps {
   sidebar: ReactNode;
   main: ReactNode;
   rightSidebar: ReactNode;
-  onPersonSidebarResize: (size: number, resize: (size: number) => void) => void;
+  onPersonSidebarCompactChange: (compact: boolean) => void;
 }

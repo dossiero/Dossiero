@@ -4,6 +4,12 @@
   display: flex;
 }
 
+.responsive-workspace__panels {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+}
+
 .wide-content-frame {
   width: 100%;
   height: 100%;

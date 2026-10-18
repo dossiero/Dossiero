@@ -30,11 +30,6 @@ import {
   saveScrollState,
   saveViewState,
 } from "@/app/view-state";
-import {
-  PERSON_SIDEBAR_COLLAPSED_WIDTH,
-  pixelsToPanelPercentage,
-  resolvePersonSidebarCompactState,
-} from "@/app/sidebar-resize";
 import { SEARCH_DEBOUNCE_MS } from "@/app/layout-constants";
 import type {
   PendingDelete,
@@ -276,24 +271,10 @@ export function useDossierApplication({
     [bundle, activeTabId],
   );
 
-  const resizePersonSidebar = useCallback((
-    size: number,
-    resizePanel: (size: number) => void,
-  ) => {
-    const sidebarWidth = size * width / 100;
-    const nextCompactState = resolvePersonSidebarCompactState(
-      sidebarCompactRef.current,
-      sidebarWidth,
-    );
-    if (nextCompactState === sidebarCompactRef.current) {
-      return;
-    }
-    sidebarCompactRef.current = nextCompactState;
-    setSidebarCompact(nextCompactState);
-    if (nextCompactState) {
-      resizePanel(pixelsToPanelPercentage(PERSON_SIDEBAR_COLLAPSED_WIDTH, width));
-    }
-  }, [width]);
+  const setPersonSidebarCompact = useCallback((compact: boolean) => {
+    sidebarCompactRef.current = compact;
+    setSidebarCompact(compact);
+  }, []);
 
   const activeContentKey = selectedId && activeTabId ? `${selectedId}:${activeTabId}` : null;
   useEffect(() => {
@@ -538,7 +519,7 @@ export function useDossierApplication({
     setActiveTabId, setSelectedObject, setPersonDialog, setCaseDialogOpen, setRelationPersonTarget,
     setRelationPersonEdit, setRelationEdit, setArchiveTarget, setTabDialog, setTabEdit,
     setTabRemove, setLinkDialog, setMediaEdit, setDeleteTarget, setLightbox, setSidebarSheet,
-    setRightSidebarSheet, setSettingsOpen, run, resizePersonSidebar,
+    setRightSidebarSheet, setSettingsOpen, run, setPersonSidebarCompact,
     rememberScroll, updateSettings, changeAppearance, actionResult, desktopAction, savePerson,
     saveCase, selectCase, selectPerson, openRelatedPerson, returnToMainPerson,
     archivePerson, confirmArchivePerson,

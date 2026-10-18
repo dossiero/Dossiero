@@ -10,6 +10,7 @@ import {
   PanelResizeHandle,
   type ImperativePanelHandle,
 } from "react-resizable-panels";
+import { useFixedPanelWidth } from "@/features/app-shell/hooks/use-fixed-panel-width";
 import {
   PERSON_DOSSIER_PANEL_COLLAPSED_WIDTH,
   PERSON_DOSSIER_PANEL_COMPACT_THRESHOLD,
@@ -35,6 +36,11 @@ export function PersonDossierWorkspace({
   const panelRef = useRef<ImperativePanelHandle | null>(null);
   const [compact, setCompact] = useState(false);
   const [workspaceWidth, setWorkspaceWidth] = useState(window.innerWidth);
+  const handlePanelResize = useFixedPanelWidth({
+    containerRef: workspaceRef,
+    panelRef,
+    collapsedWidth: PERSON_DOSSIER_PANEL_COLLAPSED_WIDTH,
+  });
 
   useLayoutEffect(() => {
     const workspace = workspaceRef.current;
@@ -74,28 +80,6 @@ export function PersonDossierWorkspace({
     ),
   );
 
-  useLayoutEffect(() => {
-    const panel = panelRef.current;
-    if (!panel) {
-      return;
-    }
-
-    const currentPanelWidth = panel.getSize() * workspaceWidth / 100;
-    if (panel.isCollapsed()) {
-      panel.resize(collapsedSize);
-      setCompact(true);
-      return;
-    }
-
-    if (currentPanelWidth < PERSON_DOSSIER_PANEL_COMPACT_THRESHOLD) {
-      panel.collapse();
-      setCompact(true);
-      return;
-    }
-
-    setCompact(false);
-  }, [collapsedSize, workspaceWidth]);
-
   return (
     <div ref={workspaceRef} className="person-dossier-workspace">
       <PanelGroup
@@ -115,7 +99,10 @@ export function PersonDossierWorkspace({
           collapsedSize={collapsedSize}
           onCollapse={() => setCompact(true)}
           onExpand={() => setCompact(false)}
-          onResize={() => setCompact(panelRef.current?.isCollapsed() ?? false)}
+          onResize={(size) => {
+            handlePanelResize(size);
+            setCompact(panelRef.current?.isCollapsed() ?? false);
+          }}
         >
           {renderPanel(compact)}
         </Panel>
