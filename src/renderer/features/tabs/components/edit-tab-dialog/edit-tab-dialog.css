@@ -1,0 +1,24 @@
+.tab-icon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(38px, 1fr));
+  gap: 6px;
+}
+
+.tab-icon-grid button {
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgb(var(--line));
+  background: rgb(var(--surface-raised) / 0.3);
+  color: rgb(var(--text-dim));
+}
+
+.tab-icon-grid button:hover,
+.tab-icon-grid button.is-active {
+  color: rgb(var(--signal));
+  border-color: rgb(var(--signal));
+}
+
+.tab-icon-grid button.is-active {
+  background: rgb(var(--signal) / 0.1);
+}

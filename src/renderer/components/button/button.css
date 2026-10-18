@@ -1,0 +1,63 @@
+.ui-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid rgb(var(--line));
+  border-radius: var(--radius);
+  background: rgb(var(--surface-raised) / 0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 10px;
+  font-weight: 600;
+  transition: color 0.14s, border-color 0.14s, background 0.14s, box-shadow 0.14s;
+  clip-path: polygon(0 0, calc(100% - 7px) 0, 100% 7px, 100% 100%, 7px 100%, 0 calc(100% - 7px));
+}
+
+.ui-button:hover:not(:disabled) {
+  border-color: rgb(var(--signal));
+  color: rgb(var(--signal));
+  box-shadow: 0 0 16px rgb(var(--glow) / 0.09);
+}
+
+.ui-button:disabled {
+  opacity: 0.36;
+}
+
+.ui-button--md {
+  height: 36px;
+  padding: 0 14px;
+}
+
+.ui-button--sm {
+  height: 29px;
+  padding: 0 10px;
+}
+
+.ui-button--icon {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+}
+
+.ui-button--signal {
+  background: rgb(var(--signal) / 0.12);
+  color: rgb(var(--signal));
+  border-color: rgb(var(--signal) / 0.62);
+}
+
+.ui-button--danger {
+  background: rgb(var(--danger) / 0.11);
+  color: rgb(var(--danger));
+  border-color: rgb(var(--danger) / 0.7);
+}
+
+.ui-button--ghost {
+  border-color: transparent;
+  background: transparent;
+}
+
+.ui-button--quiet {
+  color: rgb(var(--text-dim));
+}

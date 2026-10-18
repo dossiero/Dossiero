@@ -1,0 +1,14 @@
+.ui-tooltip {
+  z-index: 100;
+  max-width: 220px;
+  background: rgb(var(--surface-raised));
+  border: 1px solid rgb(var(--line));
+  color: rgb(var(--text));
+  padding: 6px 8px;
+  font-size: 10px;
+  box-shadow: 0 0 18px rgb(var(--shadow) / 0.45);
+}
+
+.ui-tooltip-arrow {
+  fill: rgb(var(--line));
+}

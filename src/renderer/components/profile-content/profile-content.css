@@ -1,0 +1,48 @@
+.dossier-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+.profile-content {
+  width: 100%;
+  min-height: 100%;
+}
+.profile-content--fill {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.content-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+.profile-content-header {
+  flex: 0 0 auto;
+  gap: 20px;
+  padding: 26px 30px 22px;
+}
+.profile-content-body {
+  width: 100%;
+}
+.profile-content-body--padded {
+  padding: 0 30px 70px;
+}
+.profile-content-body--flush {
+  padding: 0;
+}
+.profile-content--fill > .profile-content-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 760px) {
+  .profile-content-header {
+    padding: 18px 14px 20px;
+  }
+
+  .profile-content-body--padded {
+    padding: 0 14px 65px;
+  }
+}

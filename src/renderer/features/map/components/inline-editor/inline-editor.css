@@ -1,0 +1,68 @@
+.inline-editor {
+  overflow: hidden;
+  border: 1px solid rgb(var(--line));
+  background: rgb(var(--bg));
+}
+.inline-editor-tools {
+  display: flex;
+  align-items: center;
+  height: 29px;
+  border-bottom: 1px solid rgb(var(--line));
+}
+.inline-editor-tools button {
+  width: 29px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-right: 1px solid rgb(var(--line));
+  background: transparent;
+  color: rgb(var(--text-dim));
+}
+.inline-editor-tools button:hover {
+  color: rgb(var(--signal));
+  background: rgb(var(--signal) / .09);
+}
+.inline-editor-tools button.is-active {
+  color: rgb(var(--signal));
+  background: rgb(var(--signal) / .13);
+}
+.inline-editor-tools input {
+  width: 34px;
+  height: 24px;
+  margin-left: auto;
+  padding: 2px;
+  border: 0;
+  background: transparent;
+}
+.inline-editor-surface {
+  min-height: 76px;
+  max-height: 150px;
+  overflow: auto;
+  padding: 8px;
+  outline: 0;
+  color: rgb(var(--text));
+  font-size: 10px;
+  line-height: 1.55;
+  letter-spacing: 0;
+  text-transform: none;
+  user-select: text;
+}
+.inline-editor-surface:empty::before {
+  content: attr(data-placeholder);
+  color: rgb(var(--text-dim) / .55);
+}
+.inline-editor-surface p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  color: rgb(var(--text-dim) / .55);
+  pointer-events: none;
+}
+.inline-editor-surface p {
+  margin: 0;
+}
+.inline-editor-surface a {
+  color: rgb(var(--signal));
+  text-decoration: underline;
+}

@@ -1,0 +1,155 @@
+{
+  "name": "dossiero",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A local-first intelligence terminal for private person dossiers.",
+  "author": {
+    "name": "Tudor Bostan",
+    "url": "https://github.com/dossiero"
+  },
+  "homepage": "https://github.com/dossiero/Dossiero",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dossiero/Dossiero.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dossiero/Dossiero/issues"
+  },
+  "license": "GPL-3.0-only",
+  "main": "dist-electron/main/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "npm run dev:web",
+    "dev:web": "concurrently -k -n API,WEB -c cyan,green \"npm:dev:server\" \"vite\"",
+    "dev:server": "tsx src/server/index.ts",
+    "rebuild:desktop": "node scripts/electron-builder.mjs install-app-deps",
+    "dev:desktop": "npm run rebuild:desktop && concurrently -k -n WEB,ELECTRON -c green,magenta \"vite\" \"npm:dev:electron\"",
+    "dev:electron": "wait-on http://localhost:5173 && tsc -p tsconfig.electron.json && cross-env VITE_DEV_SERVER_URL=http://localhost:5173 electron .",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.electron.json --noEmit",
+    "check:renderer-structure": "node scripts/check-renderer-structure.mjs",
+    "check": "npm test && npm run check:renderer-structure && npm run build",
+    "db:studio": "drizzle-kit studio",
+    "build": "npm run typecheck && vite build",
+    "build:desktop": "npm run build && tsc -p tsconfig.electron.json",
+    "package": "npm run build:desktop && node scripts/electron-builder.mjs",
+    "preview": "vite preview"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@editorjs/attaches": "^1.3.2",
+    "@editorjs/delimiter": "^1.4.2",
+    "@editorjs/editorjs": "^2.31.7",
+    "@editorjs/embed": "^2.7.7",
+    "@editorjs/header": "^2.8.9",
+    "@editorjs/image": "^2.10.3",
+    "@editorjs/inline-code": "^1.5.2",
+    "@editorjs/list": "^2.0.9",
+    "@editorjs/marker": "^1.4.0",
+    "@editorjs/quote": "^2.7.6",
+    "@editorjs/table": "^2.4.6",
+    "@fastify/cors": "^10.0.1",
+    "@fastify/multipart": "^9.0.3",
+    "@fontsource/ibm-plex-mono": "^5.1.1",
+    "@fontsource/orbitron": "^5.1.1",
+    "@radix-ui/react-alert-dialog": "^1.1.6",
+    "@radix-ui/react-avatar": "^1.1.3",
+    "@radix-ui/react-context-menu": "^2.2.6",
+    "@radix-ui/react-dialog": "^1.1.6",
+    "@radix-ui/react-dropdown-menu": "^2.1.6",
+    "@radix-ui/react-scroll-area": "^1.2.3",
+    "@radix-ui/react-separator": "^1.1.2",
+    "@radix-ui/react-tabs": "^1.1.3",
+    "@radix-ui/react-tooltip": "^1.1.8",
+    "@tiptap/extension-color": "^3.31.4",
+    "@tiptap/extension-link": "^3.31.4",
+    "@tiptap/extension-text-style": "^3.31.4",
+    "@tiptap/react": "^3.31.4",
+    "@tiptap/starter-kit": "^3.31.4",
+    "archiver": "^8.0.0",
+    "better-sqlite3": "^13.0.3",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "cmdk": "^1.1.1",
+    "drizzle-orm": "^0.45.3",
+    "editorjs-color-picker": "^1.0.8",
+    "editorjs-html": "^4.0.5",
+    "fastify": "^5.2.1",
+    "lucide-react": "^0.475.0",
+    "maplibre-gl": "^6.11.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-resizable-panels": "^2.1.7",
+    "sanitize-html": "^2.18.0",
+    "sonner": "^2.0.1",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/archiver": "^8.0.0",
+    "@types/better-sqlite3": "^7.6.12",
+    "@types/node": "^22.13.4",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "@types/sanitize-html": "^2.16.2",
+    "@types/unzipper": "^0.10.11",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "concurrently": "^9.1.2",
+    "cross-env": "^7.0.3",
+    "drizzle-kit": "^0.31.11",
+    "electron": "^44.5.1",
+    "electron-builder": "^26.15.3",
+    "postcss": "^8.5.2",
+    "tsx": "^4.19.2",
+    "typescript": "~5.7.2",
+    "unzipper": "^0.12.5",
+    "vite": "^6.1.0",
+    "wait-on": "^8.0.2"
+  },
+  "overrides": {
+    "@electron/get": "5.1.0",
+    "@esbuild-kit/core-utils": {
+      "esbuild": "0.25.12"
+    }
+  },
+  "build": {
+    "appId": "dossiero.quidquid.latet.apparebit",
+    "productName": "Dossiero",
+    "copyright": "Copyright © 2026 Tudor Bostan",
+    "asar": true,
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "dist-electron/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "build/icon.png",
+        "to": "icon.png"
+      },
+      {
+        "from": "LICENSE",
+        "to": "LICENSE.txt"
+      }
+    ],
+    "mac": {
+      "icon": "build/icon.icns",
+      "category": "public.app-category.productivity"
+    },
+    "win": {
+      "icon": "build/icon.ico",
+      "target": "nsis"
+    },
+    "linux": {
+      "icon": "build/icons",
+      "target": [
+        "AppImage"
+      ]
+    }
+  }
+}

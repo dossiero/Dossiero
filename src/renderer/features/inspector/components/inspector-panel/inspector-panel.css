@@ -1,0 +1,103 @@
+.inspector {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-left: 1px solid rgb(var(--line));
+  padding: 18px 14px;
+}
+
+.inspector.is-media {
+  padding: 0;
+}
+
+.inspector-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.inspector-head h2 {
+  margin: 3px 0 0;
+  font-size: 15px;
+}
+
+.inspector-network {
+  position: relative;
+  min-height: 130px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 12px;
+}
+
+.inspector-network .network-motif {
+  width: 150px;
+  opacity: 0.72;
+}
+
+.node-label {
+  position: absolute;
+  color: rgb(var(--text-dim));
+  font-size: 8px;
+  letter-spacing: 0.08em;
+}
+
+.node-label.primary {
+  left: 5px;
+  top: 18px;
+}
+
+.node-label.related {
+  right: 5px;
+  bottom: 20px;
+}
+
+.inspect-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  border-top: 1px solid rgb(var(--line));
+  border-bottom: 1px solid rgb(var(--line));
+  color: rgb(var(--text-dim));
+  font-size: 9px;
+  letter-spacing: 0.12em;
+}
+
+.inspect-fields {
+  display: grid;
+}
+
+.inspect-empty {
+  min-height: 180px;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 10px;
+  color: rgb(var(--text-dim));
+  text-align: center;
+}
+
+.inspect-empty span {
+  color: rgb(var(--signal));
+  font-size: 24px;
+}
+
+.relation-inspector-avatar {
+  width: 76px;
+  height: 76px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 14px;
+  overflow: hidden;
+  border: 1px solid rgb(var(--signal));
+  border-radius: 50%;
+  color: rgb(var(--signal));
+}
+
+.relation-inspector-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

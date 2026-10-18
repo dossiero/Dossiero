@@ -1,0 +1,157 @@
+.map-search-menu {
+  width: min(360px,80vw);
+  padding: 5px;
+}
+.map-search-menu form {
+  display: grid;
+  grid-template-columns: 1fr 32px;
+  gap: 5px;
+}
+.map-search-menu form .ui-button {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+}
+.map-search-menu > p {
+  margin: 9px 7px 5px;
+  color: rgb(var(--text-dim));
+  font-size: 9px;
+  line-height: 1.45;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.map-search-result {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.map-search-result strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: rgb(var(--text));
+  font-size: 10px;
+  white-space: nowrap;
+}
+.map-search-result small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: rgb(var(--text-dim));
+  font-size: 8px;
+  white-space: nowrap;
+}
+.map-search-spinner {
+  animation: spin .8s linear infinite;
+}
+.map-search-target {
+  pointer-events: none;
+}
+.map-search-target circle {
+  fill: rgb(var(--bg) / .72);
+  stroke: rgb(var(--signal));
+  stroke-width: 2;
+}
+.map-search-target path {
+  stroke: rgb(var(--signal));
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+.map-search-target text {
+  paint-order: stroke;
+  stroke: rgb(var(--bg));
+  stroke-width: 5px;
+  stroke-linejoin: round;
+  fill: rgb(var(--signal));
+  font: 600 10px "IBM Plex Mono";
+  text-anchor: middle;
+}
+/* Map place search */
+.map-search {
+  position: absolute;
+  z-index: 7;
+  left: 12px;
+  top: 12px;
+  width: min(420px,calc(100% - 24px));
+}
+.map-tools {
+  top: 58px;
+}
+.map-search-form {
+  display: grid;
+  grid-template-columns: 32px minmax(0,1fr) 34px;
+  align-items: center;
+  border: 1px solid rgb(var(--line));
+  background: rgb(var(--surface-raised) / .97);
+  box-shadow: 0 5px 18px rgb(var(--shadow) / .34);
+}
+.map-search-leading {
+  justify-self: center;
+  color: rgb(var(--signal));
+  pointer-events: none;
+}
+.map-search-form .ui-input {
+  height: 36px;
+  padding: 0 4px;
+  border: 0;
+  background: transparent;
+  font-size: 10px;
+  text-transform: none;
+}
+.map-search-form .ui-input:focus {
+  border: 0;
+  box-shadow: none;
+}
+.map-search-form .ui-button {
+  width: 33px;
+  height: 31px;
+  border-left: 1px solid rgb(var(--line));
+}
+.map-search-menu {
+  width: 100%;
+  max-height: min(360px,55vh);
+  overflow-y: auto;
+}
+.map-search-results.ui-menu {
+  width: min(420px,calc(100vw - 24px));
+  box-sizing: border-box;
+}
+@media (max-width:760px) {
+  .map-search {
+    left: 8px;
+    top: 8px;
+    width: calc(100% - 16px);
+  }
+  .map-tools {
+    left: 8px;
+    top: 54px;
+  }
+  .map-detail-card {
+    top: 54px;
+  }
+}
+@media (max-width:760px) {
+  .map-canvas {
+    right: 190px;
+  }
+  .map-layers-panel {
+    width: 190px;
+  }
+  .map-layer-folder-row > span,
+  .map-layer-main span {
+    font-size: 8px;
+  }
+}
+
+.map-search-form,
+.map-tools,
+.map-draw-actions,
+.map-style-option,
+.map-style-option.is-current {
+  box-shadow: 0 2px 7px rgb(var(--shadow) / .16);
+}
+@media (max-width:760px) {
+  .map-canvas {
+    right: var(--map-layers-width,190px);
+  }
+}

@@ -1,0 +1,18 @@
+.media-inspector-section-body {
+  padding: 0 12px 10px;
+}
+
+.media-inspector-section-body .inspect-field:last-child {
+  border-bottom: 0;
+}
+
+.exif-message {
+  margin: 0;
+  padding: 9px 0;
+  color: rgb(var(--text-dim));
+  font-size: 10px;
+}
+
+.exif-message.is-error {
+  color: rgb(var(--danger));
+}

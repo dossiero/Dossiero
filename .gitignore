@@ -1,0 +1,16 @@
+node_modules
+dist
+dist-electron
+release
+.dev-data
+.npm-cache
+*.log
+.DS_Store
+.env
+.env.*
+!.env.example
+.idea
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+coverage

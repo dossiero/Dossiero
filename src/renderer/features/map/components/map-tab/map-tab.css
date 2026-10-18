@@ -1,0 +1,175 @@
+.map-content {
+  position: relative;
+}
+.map-board {
+  position: relative;
+  flex: 1;
+  min-height: 380px;
+  overflow: hidden;
+  border-top: 1px solid rgb(var(--line));
+  background: rgb(var(--bg));
+  touch-action: none;
+  user-select: none;
+  cursor: grab;
+}
+.map-board:active {
+  cursor: grabbing;
+}
+.map-board.tool-pen {
+  cursor: crosshair;
+}
+.map-vector-map {
+  position: absolute;
+  inset: 0;
+  background: rgb(var(--bg));
+  pointer-events: none;
+}
+.map-vector-map .maplibregl-canvas {
+  outline: 0;
+}
+.map-overlay {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+}
+.map-feature {
+  cursor: pointer;
+  pointer-events: all;
+}
+.map-feature.is-selected {
+  cursor: move;
+}
+.map-vector {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.map-vector[data-geometry="LineString"] {
+  pointer-events: stroke;
+}
+.map-vector:hover,
+.map-vector.is-selected {
+  filter: drop-shadow(0 0 4px rgb(var(--shadow)));
+}
+.map-marker {
+  cursor: move;
+  filter: drop-shadow(0 3px 4px rgb(0 0 0 / .35));
+}
+.map-marker > circle:not(.map-marker-body),
+.map-marker-center {
+  fill: rgb(255 255 255 / .88);
+}
+.map-marker-symbol {
+  color: #1a1a1a;
+  pointer-events: none;
+}
+.map-marker .map-marker-label {
+  paint-order: stroke;
+  stroke: rgb(var(--surface-raised));
+  stroke-width: 5px;
+  stroke-linejoin: round;
+  fill: rgb(var(--text));
+  font: 600 10px "IBM Plex Mono";
+}
+.map-marker:hover,
+.map-marker.is-selected {
+  filter: drop-shadow(0 0 7px rgb(var(--signal)));
+}
+.map-draft {
+  stroke: rgb(var(--signal));
+  stroke-width: 3;
+  stroke-dasharray: 7 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+.map-attribution {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 2px 5px;
+  border: 1px solid rgb(var(--line));
+  border-width: 1px 0 0 1px;
+  background: rgb(var(--surface-raised) / .9);
+  color: rgb(var(--text-dim));
+  font: 8px "IBM Plex Mono",monospace;
+}
+.map-attribution a {
+  color: rgb(var(--signal));
+}
+.map-board {
+  cursor: default;
+}
+.map-board:active {
+  cursor: default;
+}
+.map-canvas {
+  position: absolute;
+  inset: 0 250px 0 0;
+  overflow: hidden;
+  touch-action: none;
+  user-select: none;
+  cursor: grab;
+}
+.map-canvas:active {
+  cursor: grabbing;
+}
+.map-canvas.tool-pen {
+  cursor: crosshair;
+}
+@media (max-width:760px) {
+  .map-head-actions .document-save-state,
+  .map-head-actions .ui-button {
+    font-size: 0;
+  }
+  .map-head-actions .ui-button {
+    width: 31px;
+    padding: 0;
+  }
+  .map-board {
+    min-height: 360px;
+  }
+  .map-detail-card {
+    right: 8px;
+    top: 8px;
+  }
+  .map-tools {
+    left: 8px;
+    top: 8px;
+  }
+  .map-pin-form {
+    width: min(270px,75vw);
+  }
+}
+@media (max-width:760px) {
+  .relation-node {
+    --relation-avatar-size: 52px;
+  }
+  .relation-node.is-center {
+    --relation-avatar-size: 68px;
+  }
+}
+
+/* Refined map interactions and layers */
+.map-canvas {
+  right: var(--map-layers-width,250px);
+}
+.map-canvas.tool-pin,
+.map-canvas.tool-line {
+  cursor: crosshair;
+}
+.map-canvas.tool-pen {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M4 20l3.8-1 11-11-2.8-2.8-11 11L4 20z' fill='%23ffffff' stroke='%23000000'/%3E%3C/svg%3E") 3 21,pencil;
+}
+.map-corner-actions {
+  position: absolute;
+  z-index: 8;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  gap: 5px;
+}
+.map-corner-actions .ui-button {
+  border: 1px solid rgb(var(--line));
+  background: rgb(var(--surface-raised) / .96);
+}

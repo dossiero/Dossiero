@@ -1,0 +1,47 @@
+.person-dossier-panel__facts {
+  flex: 0 0 auto;
+  display: grid;
+  margin-top: 24px;
+  border-top: 1px solid rgb(var(--line));
+}
+
+.person-dossier-panel__fact {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  padding: 13px 18px;
+  border-bottom: 1px solid rgb(var(--line) / .55);
+  color: rgb(var(--text-dim));
+}
+
+.person-dossier-panel__fact-icon {
+  color: rgb(var(--signal) / .72);
+}
+
+.person-dossier-panel__fact-copy {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.person-dossier-panel__fact-label {
+  color: rgb(var(--text-dim));
+  font-size: 7px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.person-dossier-panel__fact-value {
+  overflow: hidden;
+  color: rgb(var(--text));
+  font-size: 9px;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.person-dossier-panel__facts--hidden {
+  display: none;
+}

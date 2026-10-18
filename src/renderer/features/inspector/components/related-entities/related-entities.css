@@ -1,0 +1,37 @@
+.relation-block {
+  display: grid;
+  gap: 7px;
+  margin-top: 13px;
+}
+
+.relation {
+  position: relative;
+  display: grid;
+  grid-template-columns: 12px 1fr auto;
+  align-items: center;
+  gap: 7px;
+  min-height: 29px;
+  color: rgb(var(--text-dim));
+  font-size: 10px;
+}
+
+.relation::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: -8px;
+  height: 11px;
+  border-left: 1px solid rgb(var(--line));
+}
+
+.relation i {
+  width: 10px;
+  height: 10px;
+  border: 1px solid rgb(var(--signal));
+  border-radius: 50%;
+}
+
+.relation code {
+  color: rgb(var(--signal));
+  font-size: 8px;
+}

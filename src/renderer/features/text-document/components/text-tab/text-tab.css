@@ -1,0 +1,40 @@
+.text-document-page {
+  width: 100%;
+}
+
+.text-document-page > .profile-content-body {
+  padding: 0;
+}
+
+.document-save-state {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: rgb(var(--text-dim));
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.document-save-state::before {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  content: "";
+}
+
+.document-save-state.is-saving,
+.document-save-state.is-dirty {
+  color: rgb(var(--signal));
+}
+
+.document-save-state.is-error {
+  color: rgb(var(--danger));
+}
+
+@media (max-width: 760px) {
+  .document-save-state {
+    font-size: 0;
+  }
+}

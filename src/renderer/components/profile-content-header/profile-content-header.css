@@ -1,0 +1,21 @@
+@import "../profile-content/profile-content.css";
+
+@media (max-width: 760px) {
+  .content-head {
+    align-items: center;
+  }
+
+  .content-head h2 {
+    font-size: 15px;
+  }
+
+  .content-head .ui-button {
+    width: 34px;
+    padding: 0;
+    font-size: 0;
+  }
+
+  .content-head .ui-button svg {
+    margin: 0;
+  }
+}

@@ -1,0 +1,63 @@
+@import "../dialog/dialog.css";
+
+.ui-alert {
+  position: fixed;
+  z-index: 81;
+  top: 50%;
+  left: 50%;
+  width: min(92vw, 520px);
+  overflow: hidden;
+  padding: 20px;
+  border: 1px solid rgb(var(--danger) / 0.55);
+  background: rgb(var(--surface));
+  box-shadow: 0 0 50px rgb(var(--shadow) / 0.65), 0 0 25px rgb(var(--glow) / 0.08);
+  transform: translate(-50%, -50%);
+}
+
+.ui-alert h2 {
+  margin: 5px 0 0;
+  font-family: Orbitron, sans-serif;
+  font-size: 17px;
+  letter-spacing: 0.08em;
+}
+
+.ui-alert p {
+  margin: 6px 0 0;
+  color: rgb(var(--text-dim));
+  font-size: 11px;
+}
+
+.ui-alert p,
+.ui-alert p strong,
+.ui-alert .field label {
+  overflow-wrap: anywhere;
+}
+
+.ui-alert .dialog-actions {
+  flex-wrap: wrap;
+}
+
+.ui-alert::before,
+.ui-alert::after {
+  border-color: rgb(var(--danger));
+}
+
+.danger-code {
+  color: rgb(var(--danger));
+  font-size: 10px;
+  letter-spacing: 0.16em;
+}
+
+.typed-confirm {
+  margin-top: 17px;
+}
+
+.typed-confirm .ui-input {
+  border-color: rgb(var(--danger) / 0.48);
+}
+
+@media (max-width: 760px) {
+  .ui-alert {
+    padding: 15px;
+  }
+}

@@ -1,0 +1,53 @@
+name: Bug report
+description: Report a reproducible problem in Dossiero
+title: "Bug: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not attach a real dossier, database, private media, credentials, or identifying data.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What happened, and what did you expect instead?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Start Dossiero in ...
+        2. Open ...
+        3. Select ...
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      placeholder: 0.1.0 or commit SHA
+    validations:
+      required: true
+  - type: dropdown
+    id: runtime
+    attributes:
+      label: Runtime
+      options:
+        - Electron desktop
+        - Browser development mode
+        - Both
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Operating system, architecture, and Node.js version if relevant.
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional context
+      description: Use only fictional or thoroughly anonymized examples.

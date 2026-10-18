@@ -1,0 +1,69 @@
+.person-dossier-panel__return--compact {
+  display: flex;
+  justify-content: center;
+  padding: 8px 0 0;
+}
+
+.person-dossier-panel__identity--compact {
+  display: grid;
+  justify-items: center;
+  padding: 14px 8px 12px;
+}
+
+.person-dossier-panel__photo--compact {
+  width: 48px;
+  height: 48px;
+  font-size: 14px;
+}
+
+.person-dossier-panel__photo--compact::after {
+  inset: 5px;
+}
+
+.person-dossier-panel__identity-copy--hidden {
+  display: none;
+}
+
+.person-dossier-panel__person-actions--compact {
+  gap: 0;
+  margin-top: 8px;
+}
+
+.person-dossier-panel__tab--compact {
+  min-height: 48px;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  border-left-width: 2px;
+}
+
+.person-dossier-panel__tab-label--hidden {
+  display: none;
+}
+
+.person-dossier-panel__tab-icon--compact {
+  width: 18px;
+  height: 18px;
+}
+
+.person-dossier-panel__add-tab--compact {
+  padding: 0;
+}
+
+.person-dossier-panel__add-tab-control--compact {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.person-dossier-panel__add-tab-label--hidden {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .person-dossier-panel__mobile-actions--compact {
+    justify-content: center;
+    padding-right: 0;
+    padding-left: 0;
+  }
+}

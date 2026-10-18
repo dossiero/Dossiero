@@ -1,0 +1,67 @@
+name: Package smoke tests
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: macOS
+            os: macos-latest
+            package-arguments: --mac --dir
+          - name: Windows
+            os: windows-latest
+            package-arguments: --win --dir
+          - name: Linux
+            os: ubuntu-latest
+            package-arguments: --linux --dir
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Create unpacked application
+        run: npm run package -- ${{ matrix.package-arguments }}
+
+      - name: Launch packaged macOS application
+        if: runner.os == 'macOS'
+        shell: bash
+        run: |
+          executable="$(find release -type f -path '*/Dossiero.app/Contents/MacOS/Dossiero' -print -quit)"
+          DOSSIERO_RELEASE_SMOKE_TEST=1 "$executable"
+
+      - name: Launch packaged Windows application
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $env:DOSSIERO_RELEASE_SMOKE_TEST = "1"
+          $executable = Get-ChildItem release -Recurse -Filter Dossiero.exe | Select-Object -First 1
+          & $executable.FullName
+
+      - name: Launch packaged Linux application
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          executable="$(find release -type f -path '*-unpacked/dossiero' -print -quit)"
+          DOSSIERO_RELEASE_SMOKE_TEST=1 xvfb-run -a "$executable" --no-sandbox

@@ -1,0 +1,198 @@
+.person-sidebar {
+  container: person-sidebar / inline-size;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid rgb(var(--line));
+}
+.app-toolbar {
+  position: relative;
+  z-index: 3;
+  flex: 0 0 60px;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(190px,1fr) minmax(280px,600px) minmax(112px,1fr);
+  align-items: center;
+  gap: 18px;
+  padding: 0 16px 0 18px;
+  border-bottom: 1px solid rgb(var(--line));
+  background: linear-gradient(110deg,rgb(var(--surface) / .98),rgb(var(--bg) / .96));
+  box-shadow: 0 8px 28px rgb(var(--shadow) / .16);
+  -webkit-app-region: drag;
+}
+html[data-runtime="desktop"] .app-toolbar {
+  padding-left: 92px;
+}
+html[data-runtime="desktop"][data-fullscreen="true"] .app-toolbar {
+  padding-left: 18px;
+}
+.toolbar-brand {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  pointer-events: none;
+}
+.toolbar-brand-mark {
+  display: block;
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 7px rgb(var(--glow) / .18));
+}
+.toolbar-wordmark {
+  overflow: hidden;
+  color: rgb(var(--text));
+  font-family: Orbitron,sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: .11em;
+  text-shadow: 0 0 20px rgb(var(--glow) / .16);
+  white-space: nowrap;
+}
+.toolbar-wordmark span {
+  color: rgb(var(--signal));
+}
+.toolbar-search-shell {
+  position: relative;
+  min-width: 0;
+  -webkit-app-region: no-drag;
+}
+.toolbar-command {
+  min-width: 0;
+  background: transparent;
+}
+.toolbar-search {
+  min-width: 0;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 0 9px 0 14px;
+  border: 1px solid rgb(var(--line));
+  border-radius: 22px;
+  background: rgb(var(--surface-raised) / .62);
+  color: rgb(var(--text-dim));
+  box-shadow: inset 0 1px rgb(var(--text) / .025);
+}
+.toolbar-search:hover,
+.toolbar-search:focus-within {
+  border-color: rgb(var(--signal) / .62);
+  color: rgb(var(--text));
+  background: rgb(var(--surface-raised) / .8);
+}
+.toolbar-search > svg {
+  flex: 0 0 auto;
+  color: rgb(var(--signal));
+}
+.toolbar-search input {
+  min-width: 0;
+  flex: 1;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: rgb(var(--text));
+  font: 11px "IBM Plex Mono";
+  cursor: text!important;
+}
+.toolbar-search input::placeholder {
+  color: rgb(var(--text-dim) / .72);
+}
+.toolbar-search kbd {
+  flex: 0 0 auto;
+  padding: 2px 6px;
+  border: 1px solid rgb(var(--line));
+  border-radius: 10px;
+  color: rgb(var(--text-dim));
+  font-size: 8px;
+}
+.toolbar-search-clear {
+  flex: 0 0 auto;
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: rgb(var(--text-dim));
+}
+.toolbar-search-clear:hover {
+  background: rgb(var(--signal) / .1);
+  color: rgb(var(--signal));
+}
+.toolbar-search-results {
+  position: absolute;
+  z-index: 95;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  max-height: min(420px,calc(100vh - 100px));
+  overflow-y: auto;
+  padding: 6px;
+  border: 1px solid rgb(var(--line));
+  border-radius: var(--radius);
+  background: rgb(var(--surface-raised) / .98);
+  box-shadow: 0 20px 50px rgb(var(--shadow) / .55),0 0 22px rgb(var(--glow) / .08);
+  animation: menu-reveal .12s ease-out;
+}
+.toolbar-command [cmdk-group-heading] {
+  padding: 9px 8px 4px;
+  color: rgb(var(--text-dim));
+  font-size: 7px;
+  letter-spacing: .14em;
+}
+.toolbar-command [cmdk-item] {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 8px;
+  border-radius: calc(var(--radius) - 1px);
+  color: rgb(var(--text-dim));
+  outline: none;
+  cursor: pointer;
+}
+.toolbar-command [cmdk-item][data-selected=true] {
+  background: rgb(var(--signal) / .09);
+  color: rgb(var(--signal));
+}
+.toolbar-command [cmdk-item] > span {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+}
+.toolbar-command [cmdk-item] strong {
+  overflow: hidden;
+  font-size: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.toolbar-command [cmdk-item] small {
+  overflow: hidden;
+  max-width: 100%;
+  color: rgb(var(--text-dim));
+  font-size: 8px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.toolbar-command [cmdk-item] kbd {
+  font-size: 7px;
+}
+.toolbar-command [cmdk-empty] {
+  padding: 28px;
+  color: rgb(var(--text-dim));
+  font-size: 9px;
+  text-align: center;
+}
+.toolbar-actions {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  -webkit-app-region: no-drag;
+}

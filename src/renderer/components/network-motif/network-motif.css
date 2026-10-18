@@ -1,0 +1,15 @@
+.network-motif {
+  overflow: visible;
+}
+.network-links path {
+  fill: none;
+  stroke: rgb(var(--line));
+  stroke-width: 1;
+}
+.network-nodes circle {
+  fill: rgb(var(--signal));
+  filter: drop-shadow(0 0 5px rgb(var(--glow)));
+}
+.network-nodes circle:nth-child(4) {
+  fill: rgb(var(--accent));
+}

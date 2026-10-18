@@ -1,0 +1,14 @@
+/* Map canvas */
+.map-head {
+  margin: 0;
+}
+.map-head-actions {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.map-actions-button.ui-button {
+  border-color: rgb(var(--line));
+  border-radius: 0;
+  clip-path: none;
+}

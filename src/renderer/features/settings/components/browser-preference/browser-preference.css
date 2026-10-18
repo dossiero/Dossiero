@@ -1,0 +1,68 @@
+.browser-preference {
+  display: grid;
+  gap: 14px;
+  margin-top: 20px;
+  padding: 14px 16px;
+  border: 1px solid rgb(var(--line) / 0.74);
+  border-radius: 10px;
+  background: rgb(var(--surface-raised) / 0.2);
+}
+
+.browser-preference-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.browser-preference-heading > svg {
+  flex: none;
+  margin-top: 1px;
+  color: rgb(var(--signal));
+}
+
+.browser-preference-heading > span {
+  display: grid;
+  gap: 2px;
+}
+
+.browser-preference-heading strong {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.browser-preference-heading small,
+.browser-preference-note {
+  color: rgb(var(--text-dim));
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.browser-preference-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.browser-preference-controls select {
+  min-width: 0;
+  flex: 1;
+  height: 32px;
+  padding: 0 30px 0 10px;
+  border: 1px solid rgb(var(--line));
+  border-radius: 7px;
+  background: rgb(var(--surface));
+  color: rgb(var(--text));
+  font: inherit;
+  font-size: 12px;
+}
+
+.browser-preference-controls button {
+  flex: none;
+}
+
+@media (max-width: 650px) {
+  .browser-preference-controls {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,70 @@
+.map-vector:hover,
+.map-vector.is-selected,
+.map-marker,
+.map-marker:hover,
+.map-marker.is-selected {
+  filter: none;
+}
+.map-feature.is-selected,
+.map-feature-group.is-selected {
+  cursor: move;
+}
+.map-feature-outline {
+  pointer-events: none;
+  stroke: transparent;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.map-feature-group:hover .map-feature-outline,
+.map-feature-group.is-selected .map-feature-outline {
+  stroke: rgb(0 0 0 / .62);
+}
+.map-polygon-handles {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .12s ease;
+}
+.map-feature-group:hover .map-polygon-handles,
+.map-feature-group.is-selected .map-polygon-handles {
+  opacity: 1;
+}
+.map-polygon-handle {
+  pointer-events: all;
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+  cursor: move;
+}
+.map-polygon-midpoint {
+  opacity: .68;
+  cursor: copy;
+}
+.map-polygon-midpoint:hover,
+.map-polygon-vertex:hover {
+  opacity: 1;
+  stroke-width: 3;
+}
+.map-marker-body {
+  stroke: transparent;
+  stroke-width: 4;
+  paint-order: stroke;
+}
+.map-marker:hover .map-marker-body,
+.map-marker.is-selected .map-marker-body {
+  stroke: rgb(0 0 0 / .62);
+}
+html[data-theme="light"] .map-feature-group:hover .map-feature-outline,
+html[data-theme="light"] .map-feature-group.is-selected .map-feature-outline,
+html[data-theme="light"] .map-marker:hover .map-marker-body,
+html[data-theme="light"] .map-marker.is-selected .map-marker-body {
+  stroke: rgb(255 255 255 / .82);
+}
+.map-draft-shape {
+  pointer-events: none;
+}
+.map-draft-point {
+  fill: rgb(var(--surface-raised));
+  stroke: rgb(var(--signal));
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}

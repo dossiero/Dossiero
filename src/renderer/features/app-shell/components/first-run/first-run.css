@@ -1,0 +1,94 @@
+.first-run {
+  position: relative;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  height: 100%;
+  overflow: hidden;
+  text-align: center;
+}
+
+.first-run > .network-motif {
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  opacity: 0.18;
+}
+
+.first-run > *:not(.network-motif) {
+  z-index: 1;
+}
+
+.first-run h1 {
+  margin: 8px 0 0;
+  color: rgb(var(--text));
+  font: 500 clamp(32px, 7vw, 72px) Orbitron;
+  letter-spacing: 0.15em;
+  text-shadow: 0 0 26px rgb(var(--glow) / 0.12);
+}
+
+.first-run p {
+  color: rgb(var(--text-dim));
+  font-size: 11px;
+}
+
+.first-run-button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 46px;
+  margin-top: 17px;
+  padding: 0 20px;
+  border: 1px solid rgb(var(--signal));
+  background: rgb(var(--signal) / 0.08);
+  color: rgb(var(--signal));
+  font: 600 10px "IBM Plex Mono";
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 9px) 0,
+    100% 9px,
+    100% 100%,
+    9px 100%,
+    0 calc(100% - 9px)
+  );
+}
+
+.first-run-button span {
+  font-size: 18px;
+}
+
+.ascii-creature {
+  margin-top: 35px;
+  color: rgb(var(--signal) / 0.55);
+  font-size: 11px;
+  line-height: 1.1;
+  white-space: pre;
+}
+
+.mobile-menu-empty {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .first-run {
+    padding: 20px;
+  }
+
+  .first-run h1 {
+    font-size: 35px;
+  }
+
+  .mobile-menu-empty {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: block;
+    padding: 7px 9px;
+    border: 1px solid rgb(var(--line));
+    background: rgb(var(--surface));
+    color: rgb(var(--text-dim));
+    font-size: 8px;
+  }
+}

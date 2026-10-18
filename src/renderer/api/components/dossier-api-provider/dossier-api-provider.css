@@ -1,0 +1,17 @@
+.boot-screen {
+  display: grid;
+  height: 100%;
+  place-content: center;
+  gap: 16px;
+  background: rgb(var(--bg));
+  color: rgb(var(--text-dim));
+  letter-spacing: .08em;
+}
+
+.boot-mark {
+  color: rgb(var(--signal));
+  font-family: Orbitron, sans-serif;
+  font-size: 30px;
+  letter-spacing: .28em;
+  text-shadow: 0 0 24px rgb(var(--glow) / .3);
+}

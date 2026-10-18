@@ -1,0 +1,7 @@
+@import "../dropdown-menu/dropdown-menu.css";
+
+.ui-menu-separator {
+  height: 1px;
+  margin: 4px;
+  background: rgb(var(--line) / 0.72);
+}

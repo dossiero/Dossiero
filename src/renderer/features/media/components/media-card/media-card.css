@@ -1,0 +1,95 @@
+.media-card {
+  position: relative;
+  min-width: 0;
+  border: 1px solid rgb(var(--line));
+  background: rgb(var(--surface) / 0.7);
+  cursor: pointer;
+  animation: reveal 0.25s ease-out both;
+}
+
+.media-card:hover {
+  border-color: rgb(var(--signal) / 0.6);
+}
+
+.media-visual {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-bottom: 1px solid rgb(var(--line));
+  background: rgb(var(--bg));
+}
+
+.media-visual img,
+.media-visual video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.75) contrast(1.08);
+}
+
+.media-visual img {
+  object-fit: contain;
+}
+
+.media-card:hover img,
+.media-card:hover video {
+  filter: saturate(1) contrast(1.02);
+}
+
+.media-scan {
+  position: absolute;
+  top: -10%;
+  right: 0;
+  left: 0;
+  height: 20%;
+  background: linear-gradient(
+    transparent,
+    rgb(var(--signal) / 0.18),
+    transparent
+  );
+  opacity: 0;
+}
+
+.media-card:hover .media-scan {
+  opacity: 1;
+  animation: scan 2s linear infinite;
+}
+
+.file-glyph {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 10px;
+  height: 100%;
+  color: rgb(var(--signal));
+}
+
+.file-glyph span {
+  color: rgb(var(--text-dim));
+  font-size: 8px;
+  letter-spacing: 0.12em;
+}
+
+.media-meta {
+  display: grid;
+  padding: 11px 12px 12px;
+}
+
+.evidence-id {
+  color: rgb(var(--signal));
+  font-size: 7px;
+  letter-spacing: 0.1em;
+}
+
+.media-meta strong {
+  overflow: hidden;
+  font-size: 10px;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.media-meta small {
+  color: rgb(var(--text-dim));
+  font-size: 8px;
+}

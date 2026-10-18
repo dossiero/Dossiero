@@ -1,0 +1,147 @@
+.link-list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+}
+
+.link-add-label-compact {
+  display: none;
+}
+
+.link-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid rgb(var(--line));
+  background: rgb(var(--surface) / 0.64);
+  animation: reveal 0.25s ease-out both;
+}
+
+.link-card:hover {
+  border-color: rgb(var(--signal) / 0.52);
+}
+
+.link-icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  align-self: start;
+  width: 48px;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 1px solid rgb(var(--line));
+  background: rgb(var(--surface-raised) / 0.75);
+  color: rgb(var(--signal));
+}
+
+.link-icon img {
+  position: absolute;
+  inset: 7px;
+  width: calc(100% - 14px);
+  height: calc(100% - 14px);
+  border-radius: 5px;
+  object-fit: contain;
+}
+
+.link-icon img[hidden] {
+  display: none;
+}
+
+.link-copy {
+  min-width: 0;
+}
+
+.link-copy h3 {
+  margin: 0;
+  overflow: hidden;
+  color: rgb(var(--text));
+  font-size: 14px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.link-title {
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.link-url {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  width: fit-content;
+  max-width: 80%;
+  margin-top: clamp(3px, 0.4vw, 5px);
+  color: rgb(var(--text-dim));
+  font-size: 10px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.link-url span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.link-url svg {
+  flex: 0 0 auto;
+}
+
+.link-copy p {
+  margin: clamp(9px, 0.8vw, 12px) 0 0;
+  color: rgb(var(--text-dim));
+  font-size: 12px;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.link-actions {
+  align-self: start;
+  display: flex;
+  align-items: center;
+  margin: -5px -6px 0 0;
+}
+
+@media (max-width: 760px) {
+  .content-head .link-add-button {
+    width: auto;
+    gap: 6px;
+    padding: 0 10px;
+    font-size: 10px;
+  }
+
+  .link-add-label-full {
+    display: none;
+  }
+
+  .link-add-label-compact {
+    display: inline;
+  }
+
+  .link-card {
+    grid-template-columns: 36px 1fr;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .link-icon {
+    width: 36px;
+  }
+
+  .link-actions {
+    grid-column: 2;
+  }
+
+  .link-actions > .ui-button {
+    display: none;
+  }
+}

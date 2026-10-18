@@ -1,0 +1,13 @@
+.inspect-field {
+  display: grid;
+  gap: 3px;
+  padding: 9px 0;
+  border-bottom: 1px solid rgb(var(--line) / 0.45);
+}
+
+.inspect-field strong {
+  overflow-wrap: anywhere;
+  color: rgb(var(--text));
+  font-size: 11px;
+  font-weight: 500;
+}

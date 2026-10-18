@@ -1,0 +1,36 @@
+.media-tab {
+  min-height: 100%;
+  transition: background-color 0.15s, box-shadow 0.15s;
+}
+
+.media-tab.is-dragging {
+  background: rgb(var(--signal) / 0.06);
+  box-shadow:
+    inset 0 0 0 1px rgb(var(--signal) / 0.7),
+    inset 0 0 36px rgb(var(--glow) / 0.08);
+}
+
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+@media (max-width: 1180px) {
+  .media-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .media-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 470px) {
+  .media-grid {
+    grid-template-columns: 1fr;
+  }
+}

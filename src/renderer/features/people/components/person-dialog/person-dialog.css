@@ -1,0 +1,28 @@
+.file-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 38px;
+  padding: 0 11px;
+  border: 1px solid rgb(var(--line));
+  background: rgb(var(--bg) / 0.64);
+  color: rgb(var(--text-dim));
+}
+
+.file-input input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.file-input span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-input small {
+  color: rgb(var(--signal));
+}

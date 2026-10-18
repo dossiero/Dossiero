@@ -1,0 +1,294 @@
+.person-dossier-panel {
+  container: person-dossier-panel / inline-size;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-right: 1px solid rgb(var(--line));
+  background: linear-gradient(
+    155deg,
+    rgb(var(--surface) / .98),
+    rgb(var(--surface) / .72)
+  );
+}
+
+.person-dossier-panel__mobile-actions {
+  display: none;
+  flex: 0 0 auto;
+  padding: 6px 7px 0;
+}
+
+.person-dossier-panel__return {
+  flex: 0 0 auto;
+  padding: 12px 14px 0;
+}
+
+.person-dossier-panel__return-button {
+  max-width: 100%;
+}
+
+.person-dossier-panel__return-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.person-dossier-panel__identity {
+  flex: 0 0 auto;
+  padding: 14px 14px 18px;
+  border-bottom: 1px solid rgb(var(--line));
+}
+
+.person-dossier-panel__photo {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgb(var(--line));
+  background: radial-gradient(
+    circle,
+    rgb(var(--signal) / .12),
+    transparent 65%
+  ), rgb(var(--bg));
+  color: rgb(var(--signal));
+  font-family: Orbitron, sans-serif;
+  font-size: 27px;
+  letter-spacing: .08em;
+}
+
+.person-dossier-panel__photo::after {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  border: 1px solid rgb(var(--line) / .8);
+  pointer-events: none;
+}
+
+.person-dossier-panel__photo--has-photo::after {
+  display: none;
+}
+
+.person-dossier-panel__photo-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+  filter: saturate(.72) contrast(1.08);
+}
+
+.person-dossier-panel__photo,
+.person-dossier-panel__name,
+.person-dossier-panel__aliases,
+.person-dossier-panel__summary {
+  cursor: pointer;
+}
+
+.person-dossier-panel__identity-copy {
+  min-width: 0;
+  margin-top: 15px;
+}
+
+.person-dossier-panel__code {
+  color: rgb(var(--text-dim));
+  font-size: 8px;
+  letter-spacing: .14em;
+}
+
+.person-dossier-panel__code-id {
+  color: rgb(var(--signal));
+}
+
+.person-dossier-panel__name {
+  margin: 4px 0 3px;
+  overflow-wrap: anywhere;
+  font-family: Orbitron, sans-serif;
+  font-size: clamp(17px, 2vw, 24px);
+  font-weight: 500;
+  line-height: 1.18;
+  letter-spacing: .035em;
+}
+
+.person-dossier-panel__aliases {
+  overflow: hidden;
+  color: rgb(var(--signal));
+  font-size: 8px;
+  letter-spacing: .07em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.person-dossier-panel__summary {
+  display: -webkit-box;
+  margin: 12px 0 0;
+  overflow: hidden;
+  color: rgb(var(--text-dim));
+  font-size: 10px;
+  line-height: 1.55;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
+.person-dossier-panel__identity-copy,
+.person-dossier-panel__name,
+.person-dossier-panel__aliases,
+.person-dossier-panel__summary {
+  cursor: text;
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.person-dossier-panel__person-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 15px;
+}
+
+.person-dossier-panel__tabs {
+  min-height: 0;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.person-dossier-panel__tab-list {
+  flex: 0 0 auto;
+}
+
+.person-dossier-panel__tab-wrap {
+  position: relative;
+}
+
+.person-dossier-panel__tab-wrap--dragging {
+  opacity: .42;
+}
+
+.person-dossier-panel__tab-wrap--drop-before::before,
+.person-dossier-panel__tab-wrap--drop-after::after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  right: 10px;
+  left: 10px;
+  height: 2px;
+  background: rgb(var(--signal));
+  box-shadow: 0 0 8px rgb(var(--glow) / .8);
+  pointer-events: none;
+}
+
+.person-dossier-panel__tab-wrap--drop-before::before {
+  top: -1px;
+}
+
+.person-dossier-panel__tab-wrap--drop-after::after {
+  bottom: -1px;
+}
+
+.person-dossier-panel__tab--reordering {
+  cursor: grabbing;
+}
+
+.person-dossier-panel__tab {
+  position: relative;
+  width: 100%;
+  min-height: 60px;
+  display: grid;
+  grid-template-columns: 36px 22px minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  padding: 0 18px;
+  border: 0;
+  border-bottom: 1px solid rgb(var(--line) / .55);
+  border-left: 2px solid transparent;
+  background: transparent;
+  color: rgb(var(--text-dim));
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-align: left;
+  text-transform: uppercase;
+  cursor: grab;
+}
+
+.person-dossier-panel__tab:active {
+  cursor: grabbing;
+}
+
+.person-dossier-panel__tab-icon {
+  color: rgb(var(--signal) / .58);
+}
+
+.person-dossier-panel__tab:hover {
+  background: rgb(var(--signal) / .045);
+  color: rgb(var(--text));
+}
+
+.person-dossier-panel__tab--active {
+  border-left-color: rgb(var(--signal));
+  background: linear-gradient(90deg, rgb(var(--signal) / .12), transparent 88%);
+  color: rgb(var(--signal));
+  box-shadow: inset 8px 0 15px -15px rgb(var(--signal));
+  text-shadow: 0 0 10px rgb(var(--glow) / .25);
+}
+
+.person-dossier-panel__tab-label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.person-dossier-panel__tab-key {
+  width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgb(var(--line));
+  color: rgb(var(--text-dim));
+  font-size: 8px;
+}
+
+.person-dossier-panel__add-tab {
+  flex: 0 0 auto;
+}
+
+.person-dossier-panel__add-tab-control {
+  width: 100%;
+  min-height: 60px;
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  padding: 0 18px 0 20px;
+  border: 0;
+  background: transparent;
+  color: rgb(var(--text-dim));
+  font-size: 9px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.person-dossier-panel__add-tab-control:hover {
+  background: rgb(var(--signal) / .045);
+  color: rgb(var(--signal));
+}
+
+.person-dossier-panel__add-tab-key {
+  width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  border: 1px dashed rgb(var(--line));
+}
+
+@media (max-width: 760px) {
+  .person-dossier-panel__mobile-actions {
+    display: flex;
+  }
+}

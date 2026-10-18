@@ -1,0 +1,50 @@
+.map-tools {
+  position: absolute;
+  z-index: 5;
+  left: 12px;
+  top: 12px;
+  display: grid;
+  padding: 3px;
+  border: 1px solid rgb(var(--line));
+  background: rgb(var(--surface-raised) / .95);
+  box-shadow: 0 5px 18px rgb(var(--shadow) / .3);
+}
+.map-tools button {
+  width: 34px;
+  height: 33px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-bottom: 1px solid rgb(var(--line));
+  background: transparent;
+  color: rgb(var(--text-dim));
+  cursor: pointer;
+}
+.map-tools button:last-child {
+  border-bottom: 0;
+}
+.map-tools button:hover,
+.map-tools button.is-active {
+  background: rgb(var(--signal) / .13);
+  color: rgb(var(--signal));
+}
+.map-zoom {
+  position: absolute;
+  z-index: 5;
+  right: 12px;
+  bottom: 22px;
+  display: flex;
+  align-items: center;
+  border: 1px solid rgb(var(--line));
+  background: rgb(var(--surface-raised) / .95);
+}
+.map-zoom .ui-button {
+  width: 30px;
+  height: 28px;
+}
+.map-zoom span {
+  min-width: 38px;
+  color: rgb(var(--text-dim));
+  font-size: 8px;
+  text-align: center;
+}

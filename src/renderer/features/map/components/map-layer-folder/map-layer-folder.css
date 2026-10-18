@@ -1,0 +1,7 @@
+.map-layer-folder {
+  display: block;
+}
+
+.map-layer-folder.is-hidden {
+  opacity: 0.55;
+}

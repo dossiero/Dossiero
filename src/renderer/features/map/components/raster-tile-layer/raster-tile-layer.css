@@ -1,0 +1,118 @@
+/* Map tile style switcher */
+.map-style-switcher {
+  position: absolute;
+  z-index: 6;
+  left: 12px;
+  bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 60px;
+}
+.map-raster-map {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: rgb(var(--bg));
+  pointer-events: none;
+}
+.map-raster-map img {
+  position: absolute;
+  width: 256px;
+  height: 256px;
+  max-width: none;
+  object-fit: cover;
+}
+.map-raster-map .map-raster-labels {
+  z-index: 1;
+}
+.map-vector-map.is-hidden {
+  display: none;
+}
+.map-style-option {
+  position: relative;
+  flex: 0 0 60px;
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  padding: 0;
+  border: 1px solid rgb(var(--line));
+  background-position: center;
+  background-size: cover;
+  box-shadow: 0 5px 18px rgb(var(--shadow) / .35);
+  cursor: pointer;
+}
+.map-style-option::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,transparent 38%,rgb(0 0 0 / .78));
+}
+.map-style-option span {
+  position: absolute;
+  z-index: 1;
+  right: 4px;
+  bottom: 4px;
+  left: 4px;
+  overflow: hidden;
+  color: #fff;
+  font: 700 9px "IBM Plex Mono",monospace;
+  letter-spacing: .02em;
+  text-align: center;
+  text-overflow: ellipsis;
+  text-shadow: 0 1px 2px #000;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.map-style-option.is-current {
+  z-index: 2;
+  border-color: rgb(var(--signal));
+  box-shadow: 0 0 0 1px rgb(var(--signal) / .35),0 5px 18px rgb(var(--shadow) / .35);
+}
+.map-style-option:focus-visible {
+  z-index: 3;
+  outline: 2px solid rgb(var(--signal));
+  outline-offset: 2px;
+}
+.map-style-option.preview-styled {
+  background-color: rgb(var(--bg));
+  background-image: linear-gradient(28deg,transparent 42%,rgb(var(--signal) / .68) 43%
+    46%,transparent 47%),linear-gradient(116deg,transparent 47%,rgb(var(--line)) 48% 53%,transparent
+    54%),radial-gradient(circle at 70% 25%,rgb(var(--surface-raised)) 0 19%,rgb(var(--bg)) 20%);
+}
+.map-style-option.preview-osm {
+  background-image: url("https://tile.openstreetmap.org/3/4/3.png");
+}
+.map-style-option.preview-hybrid {
+  background-image: url("https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/3/3/4");
+}
+.map-style-option.preview-terrain {
+  background-image: url("https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/3/3/4");
+}
+.map-style-variants {
+  display: flex;
+  gap: 6px;
+  max-width: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: max-width .18s ease,opacity .14s ease,transform .18s ease;
+}
+.map-style-switcher:hover .map-style-variants,
+.map-style-switcher:focus-within .map-style-variants {
+  max-width: 192px;
+  opacity: 1;
+  transform: translateX(0);
+}
+.map-style-variants .map-style-option:hover {
+  z-index: 2;
+  border-color: rgb(var(--signal));
+  box-shadow: inset 0 0 0 1px rgb(var(--signal) / .55);
+}
+@media (max-width:760px) {
+  .map-style-switcher {
+    left: 8px;
+    bottom: 8px;
+  }
+}
+

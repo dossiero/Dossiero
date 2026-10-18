@@ -1,0 +1,64 @@
+.dossier-main {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: rgb(var(--bg) / .44);
+}
+
+.content-fullscreen-frame,
+.dossier-main.is-content-fullscreen {
+  width: 100%;
+}
+
+.dossier-scroll {
+  min-width: 0;
+  min-height: 0;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.sheet-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+}
+
+.sheet-scrim {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: rgb(var(--bg) / .74);
+  backdrop-filter: blur(2px);
+}
+
+.sheet-panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: min(88vw, 340px);
+  box-shadow: 0 0 45px rgb(var(--shadow) / .6);
+  animation: reveal .16s ease-out;
+}
+
+.sheet-panel.left {
+  left: 0;
+}
+
+.sheet-panel.right {
+  right: 0;
+}
+
+.terminal-toast {
+  border: 1px solid rgb(var(--line)) !important;
+  border-radius: 0 !important;
+  background: rgb(var(--surface-raised)) !important;
+  color: rgb(var(--text)) !important;
+  font-family: "IBM Plex Mono", monospace !important;
+  font-size: 10px !important;
+  box-shadow: 0 0 25px rgb(var(--shadow) / .5) !important;
+}

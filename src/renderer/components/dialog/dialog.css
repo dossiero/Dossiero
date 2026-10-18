@@ -1,0 +1,69 @@
+.ui-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  background: rgb(var(--bg) / 0.8);
+  backdrop-filter: blur(3px);
+  animation: reveal 0.15s ease-out;
+}
+
+.ui-dialog {
+  position: fixed;
+  z-index: 81;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(92vw, 520px);
+  max-height: 88vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 20px;
+  border: 1px solid rgb(var(--line));
+  background: rgb(var(--surface));
+  box-shadow: 0 0 50px rgb(var(--shadow) / 0.65), 0 0 25px rgb(var(--glow) / 0.08);
+  scrollbar-width: none;
+}
+
+.ui-dialog--wide {
+  width: min(92vw, 760px);
+}
+
+.ui-dialog::-webkit-scrollbar {
+  display: none;
+}
+
+.ui-dialog.panel-brackets::after {
+  right: 0;
+  bottom: 0;
+}
+
+.ui-dialog-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.ui-dialog h2 {
+  margin: 5px 0 0;
+  font-family: Orbitron, sans-serif;
+  font-size: 17px;
+  letter-spacing: 0.08em;
+}
+
+.ui-dialog [data-radix-dialog-description] {
+  color: rgb(var(--text-dim));
+  margin: 6px 0 0;
+  font-size: 11px;
+}
+@media (max-width: 760px) {
+  .ui-dialog {
+    padding: 15px;
+  }
+
+  .ui-dialog-head {
+    margin-bottom: 14px;
+  }
+}
