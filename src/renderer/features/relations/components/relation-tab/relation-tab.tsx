@@ -45,7 +45,7 @@ export function RelationTab(props: RelationTabProps) {
   const { tab, person, people, relationships, positions } = props;
   const hasPeople = people.length > 0;
   const storageKey = `dossier-relation-view:${person.id}:${tab.id}`;
-  const cameraStorageKey = `dossier-relation-camera:${person.id}:${tab.id}`;
+  const cameraStorageKey = `dossier-relation-camera:v2:${person.id}:${tab.id}`;
   const [view, setView] = useState<RelationViewMode>(() => (
     localStorage.getItem(storageKey) === "list" ? "list" : "graph"
   ));
