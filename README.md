@@ -8,8 +8,13 @@ The app has no account, telemetry, cloud sync, scraping, or remote dossier API. 
 tiles and geocoding use the external providers allowed by the renderer's Content Security Policy.
 Saved-link favicons are fetched on demand from Google's favicon service and cached locally.
 
-> **Project status:** Dossiero is pre-1.0 and preparing for its first public release. Data formats and
-> APIs may still change.
+## Download
+
+- [macOS — Apple Silicon](https://github.com/dossiero/Dossiero/releases/download/v0.1.1/Dossiero-0.1.1-mac-arm64.dmg)
+- [macOS — Intel](https://github.com/dossiero/Dossiero/releases/download/v0.1.1/Dossiero-0.1.1-mac-x64.dmg)
+- [Windows — x64](https://github.com/dossiero/Dossiero/releases/download/v0.1.1/Dossiero-0.1.1-windows-x64-setup.exe)
+- [Linux — x64](https://github.com/dossiero/Dossiero/releases/download/v0.1.1/Dossiero-0.1.1-linux-x86_64.AppImage)
+
 
 ## Quick start
 
