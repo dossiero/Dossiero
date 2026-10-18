@@ -91,7 +91,8 @@ jobs:
         shell: bash
         run: |
           executable="$(find release -type f -path '*-unpacked/dossiero' -print -quit)"
-          DOSSIERO_RELEASE_SMOKE_TEST=1 xvfb-run -a "$executable" --no-sandbox
+          timeout 30s env -u DBUS_SESSION_BUS_ADDRESS DOSSIERO_RELEASE_SMOKE_TEST=1 \
+            xvfb-run -a "$executable" --no-sandbox
 
       - name: Preserve installer for release upload
         uses: actions/upload-artifact@v4

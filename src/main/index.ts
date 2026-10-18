@@ -545,7 +545,7 @@ app.whenReady().then(async () => {
     }, 15_000);
     window.webContents.once('did-finish-load', () => {
       clearTimeout(smokeTestTimeout);
-      app.quit();
+      app.exit(0);
     });
     window.webContents.once('did-fail-load', (_event, errorCode, errorDescription) => {
       clearTimeout(smokeTestTimeout);

@@ -2,7 +2,12 @@ import { existsSync, readFileSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 
-const executable = join(process.cwd(), 'node_modules', '.bin', process.platform === 'win32' ? 'electron-builder.cmd' : 'electron-builder');
+const electronBuilderCli = join(
+  process.cwd(),
+  'node_modules',
+  'electron-builder',
+  'cli.js',
+);
 const environment = { ...process.env };
 const builderArguments = process.argv.slice(2);
 
@@ -44,6 +49,13 @@ if (builderArguments.length === 0) {
 // it exists; Windows uses node-gyp's normal discovery.
 if (process.platform !== 'win32' && existsSync('/usr/bin/python3')) environment.PYTHON = '/usr/bin/python3';
 
-const result = spawnSync(executable, builderArguments, { stdio: 'inherit', env: environment });
-if (result.error) throw result.error;
+const result = spawnSync(process.execPath, [electronBuilderCli, ...builderArguments], {
+  stdio: 'inherit',
+  env: environment,
+});
+
+if (result.error) {
+  throw result.error;
+}
+
 process.exit(result.status ?? 1);
