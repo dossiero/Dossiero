@@ -2,9 +2,14 @@ name: Package smoke tests
 
 on:
   workflow_dispatch:
-  push:
-    tags:
-      - "v*"
+    inputs:
+      release_tag:
+        description: Existing release tag to receive installers; leave blank for a build-only run
+        required: false
+        type: string
+  release:
+    types:
+      - published
 
 permissions:
   contents: read
@@ -18,15 +23,26 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - name: macOS
-            os: macos-latest
-            package-arguments: --mac --dir
+          - name: macOS Apple Silicon
+            os: macos-15
+            installer-arguments: --mac dmg --arm64
+            artifact-name: macos-arm64
+            asset-pattern: release/*.dmg
+          - name: macOS Intel
+            os: macos-15-intel
+            installer-arguments: --mac dmg --x64
+            artifact-name: macos-x64
+            asset-pattern: release/*.dmg
           - name: Windows
             os: windows-latest
-            package-arguments: --win --dir
+            installer-arguments: --win nsis --x64
+            artifact-name: windows-x64
+            asset-pattern: release/*.exe
           - name: Linux
             os: ubuntu-latest
-            package-arguments: --linux --dir
+            installer-arguments: --linux AppImage --x64
+            artifact-name: linux-x64
+            asset-pattern: release/*.AppImage
 
     steps:
       - name: Check out repository
@@ -41,8 +57,19 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Create unpacked application
-        run: npm run package -- ${{ matrix.package-arguments }}
+      - name: Confirm the release tag matches the package version
+        if: github.event_name == 'release' || inputs.release_tag != ''
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name || inputs.release_tag }}
+        run: >-
+          node -e "const packageJson = require('./package.json');
+          if (process.env.RELEASE_TAG !== 'v' + packageJson.version) {
+          throw new Error('Release tag must be v' + packageJson.version); }"
+
+      - name: Create installer
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: "false"
+        run: npm run package -- ${{ matrix.installer-arguments }} --publish never
 
       - name: Launch packaged macOS application
         if: runner.os == 'macOS'
@@ -65,3 +92,36 @@ jobs:
         run: |
           executable="$(find release -type f -path '*-unpacked/dossiero' -print -quit)"
           DOSSIERO_RELEASE_SMOKE_TEST=1 xvfb-run -a "$executable" --no-sandbox
+
+      - name: Preserve installer for release upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: installer-${{ matrix.artifact-name }}
+          path: ${{ matrix.asset-pattern }}
+          if-no-files-found: error
+
+  publish-assets:
+    name: Attach installers to GitHub Release
+    if: github.event_name == 'release' || inputs.release_tag != ''
+    needs: package
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Download installers
+        uses: actions/download-artifact@v4
+        with:
+          pattern: installer-*
+          path: release-assets
+          merge-multiple: true
+
+      - name: Create checksums
+        working-directory: release-assets
+        run: sha256sum * > SHA256SUMS.txt
+
+      - name: Attach installers to release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.event.release.tag_name || inputs.release_tag }}
+        run: gh release upload "$RELEASE_TAG" release-assets/* --clobber

@@ -73,6 +73,11 @@ Silicon macOS package:
 npm run package -- --mac --arm64
 ```
 
+Use `--mac --x64` for an Intel macOS package. Publishing a GitHub Release triggers the Package
+smoke tests workflow, which builds and tests separate Apple Silicon and Intel DMGs, a Windows x64
+installer, and a Linux x64 AppImage. After every platform succeeds, the workflow attaches the four
+installers and a `SHA256SUMS.txt` file to the release.
+
 Public distribution will also require platform-specific signing and notarization work. A locally
 built unsigned package is suitable for development but should not be presented as a trusted public
 release.

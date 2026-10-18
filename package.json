@@ -138,14 +138,17 @@
       }
     ],
     "mac": {
+      "artifactName": "${productName}-${version}-mac-${arch}.${ext}",
       "icon": "build/icon.icns",
       "category": "public.app-category.productivity"
     },
     "win": {
+      "artifactName": "${productName}-${version}-windows-${arch}-setup.${ext}",
       "icon": "build/icon.ico",
       "target": "nsis"
     },
     "linux": {
+      "artifactName": "${productName}-${version}-linux-${arch}.${ext}",
       "icon": "build/icons",
       "target": [
         "AppImage"
