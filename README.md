@@ -127,4 +127,3 @@ Dossiero is free software licensed under the
 [GNU General Public License version 3](LICENSE). You may use, study, modify, and redistribute it
 under GPLv3's terms. Distributed modified versions and derivative works must remain under GPLv3,
 with their corresponding source code made available as required by the license.
-# Dossiero
